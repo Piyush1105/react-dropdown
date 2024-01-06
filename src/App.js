@@ -1,23 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import Dropdown from "./components/dropdown";
 
 function App() {
+  const [listItems, setListItems] = useState("");
+  const handleDropdownChange = (selectedOption) => {
+    setListItems(selectedOption);
+  };
+
+  const options = [
+    { id: 0, label: "Black", value: `#333` },
+    { id: 1, label: "Red", value: `#ff2e63` },
+    {
+      id: 2,
+      label: "Green",
+      value: `#62d2a2
+`,
+    },
+    {
+      id: 3,
+      label: "Blue",
+      value: `#005691
+`,
+    },
+    {
+      id: 3,
+      label: "Cyan",
+      value: `#08d9d6
+`,
+    },
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="mainContainer" style={{ backgroundColor: `${listItems}` }}>
+      <Dropdown
+        id="dropdown"
+        labelText="Colors"
+        options={options}
+        name="roles"
+        value={listItems}
+        handleDropdownChange={handleDropdownChange}
+      />
     </div>
   );
 }
